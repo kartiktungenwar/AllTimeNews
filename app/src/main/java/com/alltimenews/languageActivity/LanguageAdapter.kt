@@ -9,11 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alltimenews.R
+import com.alltimenews.mainActivity.MainActivity
+import com.alltimenews.utill.Constant
 import com.alltimenews.utill.SharedPreferenceManager
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-class LanguageAdapter(private val context: Activity?, private val sharedPreferenceManager: SharedPreferenceManager?, private val languageArrayList: ArrayList<Languages?>?) : RecyclerView.Adapter<LanguageAdapter.ViewHolder>() {
+class LanguageAdapter(private val context: Activity?, private val sharedPreferenceManager: SharedPreferenceManager?, private val languageArrayList: ArrayList<Languages?>?) : RecyclerView.Adapter<LanguageAdapter.ViewHolder>(),Constant {
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): LanguageAdapter.ViewHolder {
@@ -26,9 +28,14 @@ class LanguageAdapter(private val context: Activity?, private val sharedPreferen
         viewHolder.languageIcon.setImageResource(languageArrayList?.get(index)?.getLanguageIcon()!!)
         viewHolder.languageLinearLayout.setOnClickListener(View.OnClickListener {
             sharedPreferenceManager?.connectDB()
-            sharedPreferenceManager?.setString("language",languageArrayList?.get(index)?.getLanguageId())
+            sharedPreferenceManager?.setString(LANGUAGE,languageArrayList?.get(index)?.getLanguageId())
+            sharedPreferenceManager?.setBoolean(FIRST_TIME,true)
             sharedPreferenceManager?.closeDB()
-            context?.startActivity(Intent(context,LanguageActivity::class.java))
+            context?.startActivity(Intent(context, MainActivity::class.java).setFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                        Intent.FLAG_ACTIVITY_NEW_TASK
+            ))
         })
     }
 

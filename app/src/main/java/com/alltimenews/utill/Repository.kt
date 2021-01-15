@@ -1,18 +1,9 @@
-package com.alltimenews.utill
+package com.alltimenews.util
 
-import android.content.Context
-import javax.inject.Inject
+import com.alltimenews.utill.Helper
 
+class Repository(private val apiHelper: Helper) {
 
-
-
-class Repository {
-
-    var apiService: NewsApiService? = null
-
-    @Inject
-    fun Repository(apiService: NewsApiService?) {
-        this.apiService = apiService
-    }
+    suspend fun getUsers() = apiHelper.getUsers()
 
 }

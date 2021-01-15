@@ -1,10 +1,8 @@
 package com.alltimenews.countryActivity
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alltimenews.R
-import com.alltimenews.utill.Repository
 
 
 class CountryViewModel : ViewModel() {

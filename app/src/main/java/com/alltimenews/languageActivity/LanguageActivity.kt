@@ -7,8 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.alltimenews.R
-import com.alltimenews.countryActivity.Country
-import com.alltimenews.countryActivity.CountryAdapter
 import com.alltimenews.countryActivity.CountryViewModel
 import com.alltimenews.utill.SharedPreferenceManager
 import com.google.android.flexbox.AlignItems

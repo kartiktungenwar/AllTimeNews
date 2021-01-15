@@ -12,12 +12,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.alltimenews.R
 import com.alltimenews.languageActivity.LanguageActivity
-import com.alltimenews.utill.Repository
+import com.alltimenews.utill.Constant
 import com.alltimenews.utill.SharedPreferenceManager
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-class CountryAdapter(private val context: Activity?, private val sharedPreferenceManager: SharedPreferenceManager?, private val countryArrayList: ArrayList<Country?>?) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
+class CountryAdapter(private val context: Activity?, private val sharedPreferenceManager: SharedPreferenceManager?, private val countryArrayList: ArrayList<Country?>?) : RecyclerView.Adapter<CountryAdapter.ViewHolder>(),Constant {
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): CountryAdapter.ViewHolder {
@@ -30,9 +30,13 @@ class CountryAdapter(private val context: Activity?, private val sharedPreferenc
         viewHolder.countryIcon.setImageResource(countryArrayList?.get(index)?.getCountryIcon()!!)
         viewHolder.countryLinearLayout.setOnClickListener(View.OnClickListener {
             sharedPreferenceManager?.connectDB()
-            sharedPreferenceManager?.setString("country",countryArrayList?.get(index)?.getCountryId())
+            sharedPreferenceManager?.setString(COUNTRY_ID,countryArrayList?.get(index)?.getCountryId())
             sharedPreferenceManager?.closeDB()
-            context?.startActivity(Intent(context,LanguageActivity::class.java))
+            context?.startActivity(Intent(context,LanguageActivity::class.java).setFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                        Intent.FLAG_ACTIVITY_NEW_TASK
+            ))
         })
     }
 

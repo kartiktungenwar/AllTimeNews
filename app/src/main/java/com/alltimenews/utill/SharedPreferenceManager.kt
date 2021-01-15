@@ -2,10 +2,11 @@ package com.alltimenews.utill
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.alltimenews.mainActivity.ui.home.HomeFragment
 
 class SharedPreferenceManager(context: Context?) {
 
-    private var context: Context? = null
+    private var context: Context? = context
     private var prefs: SharedPreferences? = null
     private var editor: SharedPreferences.Editor? = null
     private val PREFS_NAME = "Watermark"
