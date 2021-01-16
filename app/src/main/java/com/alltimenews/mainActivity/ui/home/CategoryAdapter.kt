@@ -8,11 +8,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alltimenews.R
+import com.alltimenews.mainActivity.ui.home.`interface`.CategoryChangeInterface
 import com.alltimenews.mainActivity.ui.home.model.Category
 import com.alltimenews.utill.SharedPreferenceManager
 
 
-class CategoryAdapter(private val context: Activity?, private val sharedPreferenceManager: SharedPreferenceManager?, private val categoryArrayList: ArrayList<Category?>?) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(
+    private val context: Activity?,
+    private val sharedPreferenceManager: SharedPreferenceManager?,
+    private val categoryChangeInterface: CategoryChangeInterface?,
+    private val categoryArrayList: ArrayList<Category?>?
+) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): CategoryAdapter.ViewHolder {
@@ -23,7 +29,7 @@ class CategoryAdapter(private val context: Activity?, private val sharedPreferen
     override fun onBindViewHolder(viewHolder: ViewHolder, index: Int) {
         viewHolder.categoryName.text = categoryArrayList?.get(index)?.getCategoryName()
         viewHolder.categoryLinearLayout.setOnClickListener(View.OnClickListener {
-            
+            categoryChangeInterface?.categoryChange(categoryArrayList?.get(index)?.getCategoryId())
         })
     }
 
